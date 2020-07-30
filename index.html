@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Drawing board</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+     body {
+       margin: 0;
+       padding: 0;
+       background-color: #333;
+     }
+
+     #canvas {
+       display: block;
+       background-color: white;
+       margin: 5% auto;
+     }
+
+     .tool {
+       margin: 25px;
+     }
+
+     label {
+       display: block;
+       color: #CCC;
+     }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <div>
+      <div id="color-picker-div" class="tool"><label>Color</label><input type="color" value="#03befc" id="color-picker"></div>
+      <div id="width-div" class="tool"><label id="width-label">Width: 1</label><input type="range" autocomplete="off" id="width-picker" value="1" min="1" max="20" onchange="updateVal(this.value)"></div>
+      <div id="clear-div" class="tool"><label>Clear</label><button id="clear" onclick="erase()">X</button></div>
+    </div>
+  </body>
+  <script type="text/javascript" src="index.js"></script>
+</html>
