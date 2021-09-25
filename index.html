@@ -19,23 +19,166 @@
        margin: 5% auto;
      }
 
+     #controls {
+       display: grid;
+       grid-template-columns: 400px 300px 300px;
+       gap: 0px;
+       /*grid-template-rows: 100px 100px;*/
+       margin-left: 120px;
+
+     }
+
+     #color-picker-container {
+       background-color: #666;
+       color: #FFF;
+       /*width: 400px;*/
+       grid-column: : 1;
+       grid-row: 1 / span 2;
+     }
+
+     .wrapper {
+
+     }
+
      .tool {
+
        margin: 25px;
      }
 
-     label {
-       display: block;
-       color: #CCC;
+     .width-div {
+       grid-column: 3;
+       grid-row: 1;
      }
+
+     #preview {
+       display: block;
+       background-color: #000;
+       width: 100%;
+     }
+
+     .control-label {
+       display: block;
+       color: #FFF;
+     }
+
+     .clear-div {
+       grid-column: 2;
+       grid-row: 1;
+     }
+
+     .erase-toggle {
+       grid-column: 2;
+       grid-row: 2;
+     }
+
+     .save-btn {
+       grid-column: 2;
+       grid-row: 3;
+     }
+
+     /* The switch - the box around the slider */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 24px;
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    /* The slider */
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: #0fd647;
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px #0fd647;
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(17px);
+      -ms-transform: translateX(17px);
+      transform: translateX(17px);
+    }
     </style>
   </head>
   <body>
     <canvas id="canvas"></canvas>
-    <div>
-      <div id="color-picker-div" class="tool"><label>Color</label><input type="color" value="#03befc" id="color-picker"></div>
-      <div id="width-div" class="tool"><label id="width-label">Width: 1</label><input type="range" autocomplete="off" id="width-picker" value="1" min="1" max="20" onchange="updateVal(this.value)"></div>
-      <div id="clear-div" class="tool"><label>Clear</label><button id="clear" onclick="erase()">X</button></div>
+
+    <div id="controls">
+
+      <div id="color-picker-container" class="tool">
+        <label class="control-label">Color</label>
+        <div class="wrapper">
+          R<input type="range" min="0" max="255" value="0" id="red" oninput="colors()" autocomplete="off">
+        </div>
+        <div class="wrapper">
+          G<input type="range" min="0" max="255" value="0" id="green" oninput="colors()" autocomplete="off">
+        </div>
+        <div class="wrapper">
+          B<input type="range" min="0" max="255" value="0" id="blue" oninput="colors()" autocomplete="off">
+        </div>
+        <span id="output">rgb( 0, 0, 0)</span>
+        <span id="preview">Color</span>
+      </div>
+
+      <div id="width-div" class="tool">
+        <label class="control-label" id="width-label">Width: 10</label>
+        <input type="range" autocomplete="off" id="width-picker" value="10" min="1" max="100" onchange="updateVal(this.value)">
+      </div>
+
+      <div id="erase-toggle-div" class="tool">
+        <label class="control-label">Erase</label>
+        <label class="switch">
+          <input type="checkbox" id="erase-toggle" autocomplete="off">
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div id="clear-div" class="tool">
+        <label class="control-label">Clear</label>
+        <button id="clear" onclick="clear()">X</button>
+      </div>
+
+      <div id="fill-toggle-div" class="tool">
+        <label class="control-label">Fill</label>
+        <label class="switch">
+          <input type="checkbox" id="fill-toggle" autocomplete="off">
+          <span class="slider"></span>
+        </label>
+      </div>
     </div>
+
+
   </body>
   <script type="text/javascript" src="index.js"></script>
 </html>
