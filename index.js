@@ -93,11 +93,45 @@ let colors = () => {
   document.getElementById("preview").style.backgroundColor = 'rgb(' + red + ',' + green + ',' + blue + ')';
 }
 
-canvas.addEventListener("touchstart", startPainting);
+document.body.addEventListener("touchstart", function (e) {
+  if (e.target == canvas) {
+    e.preventDefault();
+  }
+}, false);
+document.body.addEventListener("touchend", function (e) {
+  if (e.target == canvas) {
+    e.preventDefault();
+  }
+}, false);
+document.body.addEventListener("touchmove", function (e) {
+  if (e.target == canvas) {
+    e.preventDefault();
+  }
+}, false);
 
-canvas.addEventListener("touchend", stopPainting);
+canvas.addEventListener("touchstart", (e) => {
+  coord = getTouchPos(canvas, e);
+  let touch = e.touches[0];
+  let mouseEvent = new MouseEvent("mousedown", {
+    clientX: touch.clientX,
+    clientY: touch.clientY
+  });
+  canvas.dispatchEvent(mouseEvent);
+}, false);
 
-canvas.addEventListener("touchmove", painting);
+canvas.addEventListener("touchend", (e) => {
+  let mouseEvent = new MouseEvent("mouseup", {});
+  canvas.dispatchEvent(mouseEvent);
+}, false);
+
+canvas.addEventListener("touchmove", (e) => {
+  let touch = e.touches[0];
+  let mouseEvent = new MouseEvent("mousemove", {
+    clientX: touch.clientX,
+    clientY: touch.clientY
+  });
+  canvas.dispatchEvent(mouseEvent);
+}, false);
 
 canvas.addEventListener("click", fillCanvas);
 
