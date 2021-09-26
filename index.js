@@ -27,6 +27,8 @@ let fillCanvas = () => {
 }
 
 let startPainting = (e) => {
+  let touch = e.touches[0];
+
   paint = true;
   getMousePos(e);
 
@@ -40,6 +42,8 @@ let stopPainting = (e) => {
 }
 
 let painting = (e) => {
+
+  let touch = e.touches[0];
 
   if(paint){
 
@@ -93,32 +97,11 @@ let colors = () => {
   document.getElementById("preview").style.backgroundColor = 'rgb(' + red + ',' + green + ',' + blue + ')';
 }
 
-canvas.addEventListener("touchstart", (e) => {
-  coord = getTouchPos(canvas, e);
-  let touch = e.touches[0];
-  let mouseEvent = new MouseEvent("mousedown", {
-    clientX: touch.clientX,
-    clientY: touch.clientY
-  });
-  canvas.dispatchEvent(mouseEvent);
-  e.preventDefault();
-}, false);
+canvas.addEventListener("touchstart", startPainting);
 
-canvas.addEventListener("touchend", (e) => {
-  let mouseEvent = new MouseEvent("mouseup", {});
-  canvas.dispatchEvent(mouseEvent);
-  e.preventDefault();
-}, false);
+canvas.addEventListener("touchend", stopPainting);
 
-canvas.addEventListener("touchmove", (e) => {
-  let touch = e.touches[0];
-  let mouseEvent = new MouseEvent("mousemove", {
-    clientX: touch.clientX,
-    clientY: touch.clientY
-  });
-  canvas.dispatchEvent(mouseEvent);
-  e.preventDefault();
-}, false);
+canvas.addEventListener("touchmove", painting);
 
 canvas.addEventListener("click", fillCanvas);
 
