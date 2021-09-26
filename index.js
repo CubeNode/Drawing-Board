@@ -27,15 +27,6 @@ let fillCanvas = () => {
 }
 
 let startPainting = (e) => {
-  let touch = e.touches[0];
-
-  let mouseEvent = new MouseEvent("mousedown", {
-    clientX: touch.clientX,
-    clientY: touch.clientY
-  });
-
-  canvas.dispatchEvent(mouseEvent);
-
   paint = true;
   getMousePos(e);
 
@@ -43,24 +34,12 @@ let startPainting = (e) => {
 }
 
 let stopPainting = (e) => {
-  let mouseEvent = new MouseEvent("mouseup", {});
-  canvas.dispatchEvent(mouseEvent);
-
   paint = false;
 
   e.preventDefault();
 }
 
 let painting = (e) => {
-
-  let touch = e.touches[0];
-  let mouseEvent = new MouseEvent("mousemove", {
-    clientX: touch.clientX,
-    clientY: touch.clientY
-  });
-  canvas.dispatchEvent(mouseEvent);
-
-  let touch = e.touches[0];
 
   if(paint){
 
@@ -114,11 +93,29 @@ let colors = () => {
   document.getElementById("preview").style.backgroundColor = 'rgb(' + red + ',' + green + ',' + blue + ')';
 }
 
-canvas.addEventListener("touchstart", startPainting);
+canvas.addEventListener("touchstart", function (e) {
+        coord = getTouchPos(canvas, e);
+  var touch = e.touches[0];
+  var mouseEvent = new MouseEvent("mousedown", {
+    clientX: touch.clientX,
+    clientY: touch.clientY
+  });
+  canvas.dispatchEvent(mouseEvent);
+}, false);
 
-canvas.addEventListener("touchend", stopPainting);
+canvas.addEventListener("touchend", function (e) {
+  var mouseEvent = new MouseEvent("mouseup", {});
+  canvas.dispatchEvent(mouseEvent);
+}, false);
 
-canvas.addEventListener("touchmove", painting);
+canvas.addEventListener("touchmove", function (e) {
+  var touch = e.touches[0];
+  var mouseEvent = new MouseEvent("mousemove", {
+    clientX: touch.clientX,
+    clientY: touch.clientY
+  });
+  canvas.dispatchEvent(mouseEvent);
+}, false);
 
 canvas.addEventListener("click", fillCanvas);
 
@@ -127,3 +124,5 @@ canvas.addEventListener("mousedown", startPainting);
 canvas.addEventListener("mouseup", stopPainting);
 
 canvas.addEventListener("mousemove", painting);
+
+document.getElementById('clear').addEventListener('click', clear);
