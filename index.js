@@ -93,22 +93,6 @@ let colors = () => {
   document.getElementById("preview").style.backgroundColor = 'rgb(' + red + ',' + green + ',' + blue + ')';
 }
 
-document.body.addEventListener("touchstart", function (e) {
-  if (e.target == canvas) {
-    e.preventDefault();
-  }
-}, false);
-document.body.addEventListener("touchend", function (e) {
-  if (e.target == canvas) {
-    e.preventDefault();
-  }
-}, false);
-document.body.addEventListener("touchmove", function (e) {
-  if (e.target == canvas) {
-    e.preventDefault();
-  }
-}, false);
-
 canvas.addEventListener("touchstart", (e) => {
   coord = getTouchPos(canvas, e);
   let touch = e.touches[0];
@@ -117,11 +101,13 @@ canvas.addEventListener("touchstart", (e) => {
     clientY: touch.clientY
   });
   canvas.dispatchEvent(mouseEvent);
+  e.preventDefault();
 }, false);
 
 canvas.addEventListener("touchend", (e) => {
   let mouseEvent = new MouseEvent("mouseup", {});
   canvas.dispatchEvent(mouseEvent);
+  e.preventDefault();
 }, false);
 
 canvas.addEventListener("touchmove", (e) => {
@@ -131,6 +117,7 @@ canvas.addEventListener("touchmove", (e) => {
     clientY: touch.clientY
   });
   canvas.dispatchEvent(mouseEvent);
+  e.preventDefault();
 }, false);
 
 canvas.addEventListener("click", fillCanvas);
