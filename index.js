@@ -29,6 +29,13 @@ let fillCanvas = () => {
 let startPainting = (e) => {
   let touch = e.touches[0];
 
+  let mouseEvent = new MouseEvent("mousedown", {
+    clientX: touch.clientX,
+    clientY: touch.clientY
+  });
+
+  canvas.dispatchEvent(mouseEvent);
+
   paint = true;
   getMousePos(e);
 
@@ -36,12 +43,22 @@ let startPainting = (e) => {
 }
 
 let stopPainting = (e) => {
+  let mouseEvent = new MouseEvent("mouseup", {});
+  canvas.dispatchEvent(mouseEvent);
+
   paint = false;
 
   e.preventDefault();
 }
 
 let painting = (e) => {
+
+  let touch = e.touches[0];
+  let mouseEvent = new MouseEvent("mousemove", {
+    clientX: touch.clientX,
+    clientY: touch.clientY
+  });
+  canvas.dispatchEvent(mouseEvent);
 
   let touch = e.touches[0];
 
