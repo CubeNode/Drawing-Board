@@ -29,10 +29,14 @@ let fillCanvas = () => {
 let startPainting = (e) => {
   paint = true;
   getMousePos(e);
+
+  e.preventDefault();
 }
 
-let stopPainting = () => {
+let stopPainting = (e) => {
   paint = false;
+
+  e.preventDefault();
 }
 
 let painting = (e) => {
@@ -65,11 +69,14 @@ let painting = (e) => {
 
   }
 
+  e.preventDefault();
 }
 
 let getMousePos = (e) => {
   coord.x = e.clientX - canvas.offsetLeft;
   coord.y = e.clientY - canvas.offsetTop;
+
+  e.preventDefault();
 }
 
 let updateVal = (val) => {
@@ -90,7 +97,7 @@ canvas.addEventListener("touchstart", startPainting);
 
 canvas.addEventListener("touchend", stopPainting);
 
-canvasa.addEventListener("touchmove", painting);
+canvas.addEventListener("touchmove", painting);
 
 canvas.addEventListener("click", fillCanvas);
 
