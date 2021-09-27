@@ -1,7 +1,7 @@
 const canvas = document.getElementById('canvas');
 let ctx = canvas.getContext("2d");
 
-canvas.width = screen.width / 2;
+canvas.width = screen.width;
 canvas.height = screen.height / 2;
 
 let paint = false,
