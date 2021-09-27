@@ -16,38 +16,39 @@
      #canvas {
        display: block;
        background-color: white;
-       margin: 5% auto;
+       margin: 1% auto;
      }
 
      #controls {
-       display: grid;
-       grid-template-columns: 400px 300px 300px;
-       gap: 0px;
-       /*grid-template-rows: 100px 100px;*/
-       margin-left: 120px;
-
+       display: flex;
+       flex-wrap: wrap;
+       margin: auto;
+       justify-content: center;
      }
 
      #color-picker-container {
        background-color: #666;
        color: #FFF;
-       /*width: 400px;*/
-       grid-column: : 1;
-       grid-row: 1 / span 2;
+       flex-basis: 1;
      }
 
-     .wrapper {
+     #switches {
+       display: flex;
+       flex-wrap: wrap;
+     }
 
+     .btn {
+       padding: 5px;
      }
 
      .tool {
-
+       flex-basis: 25%;
        margin: 25px;
+       padding: 5px;
      }
 
-     .width-div {
-       grid-column: 3;
-       grid-row: 1;
+     .toggle {
+       display: inline-block;
      }
 
      #preview {
@@ -59,21 +60,6 @@
      .control-label {
        display: block;
        color: #FFF;
-     }
-
-     .clear-div {
-       grid-column: 2;
-       grid-row: 1;
-     }
-
-     .erase-toggle {
-       grid-column: 2;
-       grid-row: 2;
-     }
-
-     .save-btn {
-       grid-column: 2;
-       grid-row: 3;
      }
 
      /* The switch - the box around the slider */
@@ -129,11 +115,11 @@
       -ms-transform: translateX(17px);
       transform: translateX(17px);
     }
+
     </style>
   </head>
   <body>
     <canvas id="canvas"></canvas>
-
     <div id="controls">
 
       <div id="color-picker-container" class="tool">
@@ -151,30 +137,35 @@
         <span id="preview">Color</span>
       </div>
 
-      <div id="width-div" class="tool">
-        <label class="control-label" id="width-label">Width: 10</label>
-        <input type="range" autocomplete="off" id="width-picker" value="10" min="1" max="100" onchange="updateVal(this.value)">
-      </div>
+      <div id="switches">
 
-      <div id="erase-toggle-div" class="tool">
-        <label class="control-label">Erase</label>
-        <label class="switch">
-          <input type="checkbox" id="erase-toggle" autocomplete="off">
-          <span class="slider"></span>
-        </label>
-      </div>
+        <div id="width-div" class="tool">
+          <label class="control-label" id="width-label">Width: 10</label>
+          <input type="range" autocomplete="off" id="width-picker" value="10" min="1" max="100" onchange="updateVal(this.value)">
+        </div>
 
-      <div id="clear-div" class="tool">
-        <label class="control-label">Clear</label>
-        <button id="clear" onclick="clear()">X</button>
-      </div>
+        <div id="toggles">
+          <div id="erase-toggle-div" class="tool toggle">
+            <label class="control-label">Erase</label>
+            <label class="switch">
+              <input type="checkbox" id="erase-toggle" autocomplete="off">
+              <span class="slider"></span>
+            </label>
+          </div>
 
-      <div id="fill-toggle-div" class="tool">
-        <label class="control-label">Fill</label>
-        <label class="switch">
-          <input type="checkbox" id="fill-toggle" autocomplete="off">
-          <span class="slider"></span>
-        </label>
+          <div id="fill-toggle-div" class="tool toggle">
+            <label class="control-label">Fill</label>
+            <label class="switch">
+              <input type="checkbox" id="fill-toggle" autocomplete="off">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div id="clear-div" class="tool">
+          <button id="clear" class="btn" onclick="clear()">Clear</button>
+        </div>
+
       </div>
     </div>
 
