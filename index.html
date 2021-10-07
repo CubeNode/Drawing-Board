@@ -43,7 +43,7 @@
 
      .tool {
        flex-basis: 25%;
-       margin: 25px;
+       margin: 5px 25px;
        padding: 5px;
      }
 
@@ -114,6 +114,21 @@
       -webkit-transform: translateX(17px);
       -ms-transform: translateX(17px);
       transform: translateX(17px);
+    }
+
+    @media (max-width: 768px) {
+      #controls {
+        display: block;
+      }
+
+      #color-picker-container {
+        display: inline-block;
+        width: 50%;
+      }
+
+      #switches {
+        display: inline-block;
+      }
     }
 
     </style>
