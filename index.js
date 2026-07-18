@@ -20,7 +20,8 @@ let clear = () => {
 let fillCanvas = () => {
   if(document.getElementById("fill-toggle").checked) {
     ctx.fillStyle = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+	ctx.fill();
+    //ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
 
   document.getElementById("fill-toggle").checked = false;
