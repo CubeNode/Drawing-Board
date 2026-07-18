@@ -131,7 +131,7 @@ canvas.addEventListener("touchmove", function (e) {
 				canvas.dispatchEvent(mouseEvent);
 			}, false);
 
-canvas.addEventListener("click", fillCanvas);
+canvas.addEventListener("click", fillShape);
 
 canvas.addEventListener("mousedown", startPainting);
 
