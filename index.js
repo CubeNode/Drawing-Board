@@ -27,6 +27,19 @@ let fillCanvas = () => {
   document.getElementById("fill-toggle").checked = false;
 }
 
+let fillShape = () => {
+	if(document.getElementById("fill-toggle).checked) {
+		ctx.beginPath();
+		ctx.moveTo(75, 50);
+		ctx.lineTo(100, 100);
+		ctx.lineTo(50, 100);
+		ctx.closePath();
+		
+		ctx.fillStyle = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+		ctx.fill();
+	}
+}
+
 let startPainting = (e) => {
   paint = true;
   getMousePos(e);
