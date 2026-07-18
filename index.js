@@ -27,7 +27,7 @@ let fillCanvas = () => {
   document.getElementById("fill-toggle").checked = false;
 }
 
-let fillShape = () => {
+/*let fillShape = () => {
 	if(document.getElementById("fill-toggle).checked) {
 		ctx.beginPath();
 		ctx.moveTo(75, 50);
@@ -38,7 +38,7 @@ let fillShape = () => {
 		ctx.fillStyle = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
 		ctx.fill();
 	}
-}
+}*/
 
 let startPainting = (e) => {
   paint = true;
