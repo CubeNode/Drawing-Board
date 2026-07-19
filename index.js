@@ -103,7 +103,9 @@ let colors = () => {
   red = document.getElementById("red").value;
   green = document.getElementById("green").value;
   blue = document.getElementById("blue").value;
-  document.getElementById("output").innerHTML = 'rgb(' + red + ',' + green + ',' + blue + ')';
+  document.getElementById("red-value").innerHTML = red;
+  document.getElementById("green-value").innerHTML = green;
+  document.getElementById("blue-value").innerHTML = blue;
   document.getElementById("preview").style.backgroundColor = 'rgb(' + red + ',' + green + ',' + blue + ')';
 }
 
