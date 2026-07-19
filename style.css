@@ -23,6 +23,21 @@ body {
        flex-basis: 1;
      }
 
+     .toggle-btn {
+        font-size: 15px;
+        width: 60px;
+        height: 50px;
+        background-color: #FFF;
+        color: #007cd5;
+        border-radius: 25%;
+        border: 1px solid #000;
+     }
+
+     .toggle-btn.active {
+        background-color: #0f67b9;
+        color: #FFF;
+     }
+
      #switches {
        display: flex;
        flex-wrap: wrap;

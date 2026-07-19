@@ -4,6 +4,7 @@ let ctx = canvas.getContext("2d");
 canvas.width = screen.width;
 canvas.height = screen.height / 2;
 
+let currentTool = "brush";
 let paint = false,
 coord = {x:0, y:0},
 color = '#000',
@@ -18,10 +19,10 @@ let clear = () => {
 }
 
 let fillCanvas = () => {
-  if(document.getElementById("fill-toggle").checked) {
+  if(document.getElementById("fill-toggle").classList.contains("active")) {
     ctx.fillStyle = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
-	ctx.fill();
-    //ctx.fillRect(0, 0, canvas.width, canvas.height);
+	  //ctx.fill();
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
 
   document.getElementById("fill-toggle").checked = false;
@@ -40,6 +41,35 @@ let fillCanvas = () => {
 	}
 }*/
 
+/* Create brush tools */
+const brushBtn = document.getElementById("brush-btn");
+const eraseBtn = document.getElementById("erase-btn");
+const fillBtn = document.getElementById("fill-btn");
+
+brushBtn.addEventListener('click', () => {
+  document.querySelectorAll('.toggle-btn').forEach(element => {
+    element.classList.remove('active');
+  });
+  brushBtn.classList.toggle("active");
+  currentTool = "brush"
+})
+
+eraseBtn.addEventListener('click', () => {
+  document.querySelectorAll('.toggle-btn').forEach(element => {
+    element.classList.remove('active');
+  });
+  eraseBtn.classList.toggle("active");
+  currentTool = "erase"
+})
+
+fillBtn.addEventListener('click', () => {
+  document.querySelectorAll('.toggle-btn').forEach(element => {
+    element.classList.remove('active');
+  });
+  fillBtn.classList.toggle("active");
+  currentTool = "fill"
+})
+
 let startPainting = (e) => {
   paint = true;
   getMousePos(e);
@@ -57,7 +87,33 @@ let painting = (e) => {
 
   if(paint){
 
-    if(document.getElementById("erase-toggle").checked) {
+    if(currentTool == "erase") {
+      ctx.beginPath();
+      ctx.moveTo(coord.x, coord.y);
+
+      getMousePos(e);
+
+      ctx.lineTo(coord.x, coord.y);
+      ctx.strokeStyle = "#FFF";
+      ctx.lineCap = "round";
+      ctx.lineWidth = document.getElementById("width-picker").value;
+      ctx.stroke();
+    } else if (currentTool == "brush") {
+      ctx.beginPath();
+      ctx.moveTo(coord.x, coord.y);
+
+      getMousePos(e);
+
+      ctx.lineTo(coord.x, coord.y);
+      ctx.strokeStyle = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+      ctx.lineCap = "round";
+      ctx.lineWidth = document.getElementById("width-picker").value;
+      ctx.stroke();
+    } else if (currentTool == "fill") {
+      fillCanvas();
+    }
+
+    /*if(document.getElementById("erase-toggle").checked) {
       ctx.beginPath();
       ctx.moveTo(coord.x, coord.y);
 
@@ -79,7 +135,7 @@ let painting = (e) => {
       ctx.lineCap = "round";
       ctx.lineWidth = document.getElementById("width-picker").value;
       ctx.stroke();
-    }
+    }*/
 
   }
 
