@@ -8,14 +8,63 @@ body {
      #canvas {
        display: block;
        background-color: white;
-       margin: 1% auto;
+       margin: 0 0 0 0 auto;
      }
 
      #controls {
-       display: flex;
-       flex-wrap: wrap;
+       
        margin: auto;
-       justify-content: center;
+       justify-content: left;
+       color: rbga(0, 0, 0, 0.5);
+     }
+
+     #toolbar-controls {
+        position: fixed;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 30px;
+        bottom: 80;
+        left: 0;
+        color: #9b9b9b;
+        background-color: rgb(122, 199, 251);
+     }
+
+     /*#expand {
+        flex: 1 1 100%;
+        text-align: center;
+        font-size: 25px;
+     }
+
+     .tool {
+        flex: 1;
+     }*/
+
+     #toolbar {
+        position: fixed;
+        display: flex;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        background-color: rgba(0, 0, 0, 0.5);
+     }
+
+     .toolbar-item {
+        width:100px;
+        height: 100%;
+     }
+
+     .toolbar-item .toggle-btn {
+        font-weight: bold;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0);
+        color:#FFF;
+        font-size: 15px;
+        border: none;
+        border-bottom: 10px solid rgba(255, 255, 255, 0.5);
      }
 
      #color-picker-container {
@@ -23,24 +72,33 @@ body {
        flex-basis: 1;
      }
 
-     .toggle-btn {
+     /*.toggle-btn {
         font-size: 15px;
         width: 60px;
         height: 50px;
         background-color: #FFF;
         color: #007cd5;
-        border-radius: 25%;
         border: 1px solid #000;
-     }
+     }*/
 
      .toggle-btn.active {
-        background-color: #0f67b9;
-        color: #FFF;
+        background-color: #FFF;
+        color: #24A0ED;
+        border-bottom: 10px solid #24A0ED;
      }
 
      #switches {
        display: flex;
-       flex-wrap: wrap;
+       flex-direction: row;
+     }
+
+     #color-picker-div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        background-color: rgb(54, 56, 58);
+        border: 2px solid #000;
+        border-radius: 15px;
      }
 
      .btn {
@@ -48,9 +106,12 @@ body {
      }
 
      .tool {
-       flex-basis: 25%;
        margin: 5px 25px;
        padding: 5px;
+     }
+
+     .control-label {
+        margin: 0 5px;
      }
 
      .toggle {

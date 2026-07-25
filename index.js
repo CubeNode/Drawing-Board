@@ -2,7 +2,7 @@ const canvas = document.getElementById('canvas');
 let ctx = canvas.getContext("2d");
 
 canvas.width = screen.width;
-canvas.height = screen.height / 2;
+canvas.height = screen.height;
 
 let currentTool = "brush";
 let paint = false,
@@ -13,6 +13,19 @@ width = 1;
 let red = 0,
 green = 0,
 blue = 0;
+
+// Track mouse position
+let mouseX = 0;
+let mouseY = 0;
+let cursorRadius = 10;
+
+const colorPicker = document.getElementById('favcolor');
+
+colorPicker.addEventListener('input', (event) => {
+    const selectedColor = event.target.value; 
+    document.getElementById("color-label").innerHTML = selectedColor;
+    console.log(selectedColor); // Outputs: "#0000ff"
+});
 
 let clear = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -105,7 +118,8 @@ let painting = (e) => {
       getMousePos(e);
 
       ctx.lineTo(coord.x, coord.y);
-      ctx.strokeStyle = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+      ctx.strokeStyle = document.getElementById("favcolor").value;
+      //ctx.strokeStyle = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
       ctx.lineCap = "round";
       ctx.lineWidth = document.getElementById("width-picker").value;
       ctx.stroke();
